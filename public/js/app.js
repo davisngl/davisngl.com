@@ -55,7 +55,6 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     function submit() {
-      console.log('submit');
       form.post('/contact');
     }
 

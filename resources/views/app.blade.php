@@ -7,6 +7,12 @@
     <script src="{{ mix('/js/manifest.js') }}" defer></script>
     <script src="{{ mix('/js/vendor.js') }}" defer></script>
     <script src="{{ mix('/js/app.js') }}" defer></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Thoughts 2>&1 /dev/null</title>
+
     @inertiaHead
 </head>
 <body>

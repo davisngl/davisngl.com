@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: #25262C;
+    @apply text-gray-100;
+}
+
 .error-message {
     @apply text-red-600 italic;
 }
