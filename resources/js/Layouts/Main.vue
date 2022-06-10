@@ -1,8 +1,10 @@
 <template>
-    <main class="max-w-5xl mx-auto">
+    <main class="max-w-4xl mx-auto">
         <Navigation class="mt-10"/>
 
-        <slot />
+        <section class="mt-20">
+            <slot />
+        </section>
     </main>
 </template>
 

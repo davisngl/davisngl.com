@@ -1,8 +1,22 @@
 <template>
-    <nav class="flex justify-around">
-        <ul class="w-1/2 flex flex-row justify-around">
+    <nav class="flex justify-between">
+        <ul class="flex">
             <li>
                 <Link href="/">Home</Link>
+            </li>
+        </ul>
+
+        <ul class="w-1/2 flex justify-around">
+            <li>
+                <Link href="/about">About</Link>
+            </li>
+
+            <li>
+                <Link href="/projects">Projects</Link>
+            </li>
+
+            <li>
+                <Link href="/articles">Blog</Link>
             </li>
 
             <li>
