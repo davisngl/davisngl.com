@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::inertia('/', 'Home');
+Route::inertia('/contact', 'Contact');
+Route::post('/contact', function () {
+    request()->validate([
+        'email' => ['required', 'email'],
+        'message' => ['required', 'min:5']
+    ]);
+
+    return back()->with('success', 'All good!');
 });
