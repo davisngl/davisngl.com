@@ -1,6 +1,5 @@
 <template>
-
-    <div class="rounded-md bg-green-50 p-4" v-if="$page.props.flash.success">
+    <div class="mb-5 rounded-md bg-green-50 p-4" v-if="$page.props.flash.success">
         <div class="flex">
             <div class="flex-shrink-0">
                 <!-- Heroicon name: solid/check-circle -->
@@ -25,28 +24,27 @@
         </div>
     </div>
 
-
     <form @submit.prevent="submit">
         <div class="mb-5">
-            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <label for="email" class="block text-sm font-medium">E-Mail</label>
             <div class="mt-1">
-                <input v-model="form.email" type="email" name="email" id="email" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
+                <input v-model="form.email" type="email" name="email" id="email" class="bg-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
                 <span class="error-message text-sm" v-if="form.errors.email" v-text="form.errors.email"></span>
             </div>
         </div>
 
         <div class="mb-5">
-            <label for="message" class="block text-sm font-medium text-gray-700">Add your message</label>
+            <label for="message" class="block text-sm font-medium">Your Message</label>
             <div class="mt-1">
-                <textarea v-model="form.message" rows="4" name="message" id="message" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                <textarea v-model="form.message" rows="4" name="message" id="message" class="bg-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
                 <span class="error-message text-sm" v-if="form.errors.message" v-text="form.errors.message"></span>
             </div>
         </div>
 
-        <div class="flex justify-end mt-5">
+        <div class="flex justify-end mt-10">
             <button type="submit"
                     :disabled="form.processing"
-                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white disabled:bg-indigo-400 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white disabled:bg-red-400 bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                 Send Message
                 <!-- Heroicon name: solid/mail -->
                 <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -68,7 +66,7 @@
     })
 
     function submit () {
-        form.post('/contact')
+        form.post(route('contact.store'))
     }
 </script>
 

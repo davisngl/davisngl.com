@@ -2,7 +2,7 @@
     <nav class="flex justify-between">
         <ul class="flex">
             <li>
-                <Link href="/">Home</Link>
+                <NavLink :href="route('home.index')" :active="$page.component === 'Home'">Home</NavLink>
             </li>
         </ul>
 
@@ -16,11 +16,11 @@
             </li>
 
             <li>
-                <Link href="/articles">Blog</Link>
+                <NavLink :href="route('article.index')" :active="$page.component === 'Articles'">Articles</NavLink>
             </li>
 
             <li>
-                <Link href="/contact">Contact</Link>
+                <NavLink :href="route('contact.index')" :active="$page.component === 'Contact'">Contact</NavLink>
             </li>
         </ul>
     </nav>
@@ -28,6 +28,7 @@
 
 <script setup>
     import { Link } from "@inertiajs/inertia-vue3";
+    import NavLink from "./NavLink";
 </script>
 
 <style scoped>

@@ -12,3 +12,7 @@ body {
 .error-message {
     @apply text-red-600 italic;
 }
+
+textarea, input {
+    @apply text-gray-900;
+}

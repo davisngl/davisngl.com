@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,13 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Home');
-Route::inertia('/contact', 'Contact');
-Route::post('/contact', function () {
-    request()->validate([
-        'email' => ['required', 'email'],
-        'message' => ['required', 'min:5']
-    ]);
+Route::get('/', function () {
+    return inertia('Home');
+})->name('home.index');
 
-    return back()->with('success', 'All good!');
-});
+Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+
+Route::get('articles', [ArticleController::class, 'index'])->name('article.index');
+Route::get('articles/{article:slug}', [ArticleController::class, 'show'])->name('article.show');
