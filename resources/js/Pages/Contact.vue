@@ -1,4 +1,6 @@
 <template>
+    <Head title="Contact Me" />
+
     <div class="mb-5 rounded-md bg-green-50 p-4" v-if="$page.props.flash.success">
         <div class="flex">
             <div class="flex-shrink-0">
@@ -26,7 +28,7 @@
 
     <form @submit.prevent="submit">
         <div class="mb-5">
-            <label for="email" class="block text-sm font-medium">E-Mail</label>
+            <label for="email" class="block text-sm font-medium">Your E-Mail Address</label>
             <div class="mt-1">
                 <input v-model="form.email" type="email" name="email" id="email" class="bg-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" placeholder="you@example.com">
                 <span class="error-message text-sm" v-if="form.errors.email" v-text="form.errors.email"></span>
@@ -36,7 +38,7 @@
         <div class="mb-5">
             <label for="message" class="block text-sm font-medium">Your Message</label>
             <div class="mt-1">
-                <textarea v-model="form.message" rows="4" name="message" id="message" class="bg-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+                <textarea v-model="form.message" rows="10" name="message" id="message" class="bg-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
                 <span class="error-message text-sm" v-if="form.errors.message" v-text="form.errors.message"></span>
             </div>
         </div>
@@ -58,7 +60,7 @@
 </template>
 
 <script setup>
-    import { useForm } from "@inertiajs/inertia-vue3";
+    import { useForm, Head } from "@inertiajs/inertia-vue3";
 
     const form = useForm({
         email: null,

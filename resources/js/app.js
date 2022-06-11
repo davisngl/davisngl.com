@@ -13,6 +13,11 @@ createInertiaApp({
 
         return page
     },
+    title: title => {
+        return title
+            ? `${title} - Thought Repository`
+            : 'Thought Repository'
+    },
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)

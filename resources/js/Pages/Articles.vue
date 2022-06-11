@@ -1,4 +1,6 @@
 <template>
+    <Head title="Article Index"/>
+
     <article v-for="article in articles" v-if="articles.length">
         <Link
             v-text="article.title"
@@ -13,7 +15,7 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3";
+import { Link, Head } from "@inertiajs/inertia-vue3";
 
 defineProps({
     articles: Array

@@ -1,4 +1,6 @@
 <template>
+    <Head :title="article.title"/>
+
     <Link
         :href="route('article.index')"
         class="block mb-5 text-gray-500 hover:text-gray-300"
@@ -28,7 +30,7 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3"
+import { Link, Head } from "@inertiajs/inertia-vue3"
 
 defineProps({
     article: Object
