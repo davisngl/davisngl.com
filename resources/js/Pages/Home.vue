@@ -1,5 +1,5 @@
 <template>
-    It should be really nice here :)
+    We will list out articles here
 </template>
 
 <script setup>

@@ -4,8 +4,9 @@
 
 body {
     font-family: 'Space Mono', monospace;
-    background-color: #25262C;
-    @apply text-gray-100;
+    background: url("../img/tile.png") repeat;
+    background-size: 30px 30px;
+    color: #FEFEFE;
 }
 
 .error-message {

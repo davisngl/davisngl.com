@@ -630,12 +630,11 @@ select {
   margin-top: -0.25rem;
   margin-bottom: -0.25rem;
 }
-.my-10 {
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-}
 .mt-10 {
   margin-top: 2.5rem;
+}
+.mt-20 {
+  margin-top: 5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -658,12 +657,6 @@ select {
 .-mr-1 {
   margin-right: -0.25rem;
 }
-.mt-32 {
-  margin-top: 8rem;
-}
-.mt-20 {
-  margin-top: 5rem;
-}
 .block {
   display: block;
 }
@@ -685,17 +678,14 @@ select {
 .w-1\/2 {
   width: 50%;
 }
-.max-w-5xl {
-  max-width: 64rem;
-}
 .max-w-4xl {
   max-width: 56rem;
 }
+.max-w-3xl {
+  max-width: 48rem;
+}
 .flex-shrink-0 {
   flex-shrink: 0;
-}
-.flex-row {
-  flex-direction: row;
 }
 .items-center {
   align-items: center;
@@ -715,12 +705,19 @@ select {
 .border {
   border-width: 1px;
 }
+.border-b-2 {
+  border-bottom-width: 2px;
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 .border-transparent {
   border-color: transparent;
+}
+.border-red-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(220 38 38 / var(--tw-border-opacity));
 }
 .bg-green-50 {
   --tw-bg-opacity: 1;
@@ -750,12 +747,28 @@ select {
 .pl-3 {
   padding-left: 0.75rem;
 }
+.pb-10 {
+  padding-bottom: 2.5rem;
+}
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
 .font-medium {
   font-weight: 500;
+}
+.font-bold {
+  font-weight: 700;
+}
+.italic {
+  font-style: italic;
+}
+.leading-8 {
+  line-height: 2rem;
 }
 .text-green-400 {
   --tw-text-opacity: 1;
@@ -777,6 +790,14 @@ select {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
+.text-gray-500 {
+  --tw-text-opacity: 1;
+  color: rgb(107 114 128 / var(--tw-text-opacity));
+}
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
@@ -785,9 +806,9 @@ select {
 
 body {
     font-family: 'Space Mono', monospace;
-    background-color: #25262C;
-    --tw-text-opacity: 1;
-    color: rgb(243 244 246 / var(--tw-text-opacity));
+    background: url(/images/tile.png?bbfb4b313195c22fbedcf0b2d164d175) repeat;
+    background-size: 30px 30px;
+    color: #FEFEFE;
 }
 
 .error-message {

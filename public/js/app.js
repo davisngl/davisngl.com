@@ -121,7 +121,7 @@ var _hoisted_1 = {
   "class": "max-w-4xl mx-auto"
 };
 var _hoisted_2 = {
-  "class": "mt-20"
+  "class": "max-w-3xl mx-auto mt-20 leading-8"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Navigation"], {
@@ -294,7 +294,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 function render(_ctx, _cache) {
-  return " It should be really nice here :) ";
+  return " We will list out articles here ";
 }
 
 /***/ }),
