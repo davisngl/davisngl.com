@@ -26,6 +26,11 @@ class Article extends Model
         });
     }
 
+    public function url(): string
+    {
+        return url('articles/' . $this->slug);
+    }
+
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()

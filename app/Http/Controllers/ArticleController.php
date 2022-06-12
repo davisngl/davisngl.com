@@ -18,6 +18,7 @@ class ArticleController extends Controller
     {
         return inertia('Article', [
             'article' => [
+                'url'          => $article->url(),
                 'title'        => $article->title,
                 'slug'         => $article->slug,
                 'content'      => $article->content,

@@ -24,13 +24,23 @@
 
         <section
             v-html="article.content"
-            class="mt-10"
+            class="my-10"
         ></section>
+
+        <div class="w-1/2">
+            <p class="text-xl font-bold mb-2">Share Article</p>
+            <ul class="flex justify-between">
+                <li><ShareLink platform="twitter" url-to-share="#">Twitter</ShareLink></li>
+                <li><ShareLink platform="facebook" :url-to-share="article.url">Facebook</ShareLink></li>
+                <li><ShareLink platform="linkedin" url-to-share="#">LinkedIn</ShareLink></li>
+            </ul>
+        </div>
     </article>
 </template>
 
 <script setup>
 import { Link, Head } from "@inertiajs/inertia-vue3"
+import ShareLink from "../Shared/ShareLink";
 
 defineProps({
     article: Object
