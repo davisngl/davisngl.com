@@ -19,6 +19,10 @@ Route::get('/', function () {
     return inertia('Home');
 })->name('home.index');
 
+Route::get('about', function () {
+   return inertia('About');
+});
+
 Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
