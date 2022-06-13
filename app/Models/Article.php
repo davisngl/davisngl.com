@@ -16,8 +16,6 @@ class Article extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $guarded = [];
-
     private const READING_SPEED_PER_WORD = .8;
 
     public function timeToRead(): Attribute
