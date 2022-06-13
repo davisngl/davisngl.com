@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Space Mono', monospace;
+    background: url("../img/tile.png") repeat;
+    background-size: 30px 30px;
+    color: #FEFEFE;
+}
+
+.error-message {
+    @apply text-red-600 italic;
+}
+
+textarea, input {
+    @apply text-gray-900;
+}
