@@ -115,4 +115,6 @@ return [
         ],
     ],
 
+    'send_to' => env('MAIL_SEND_TO', 'davisnaglis2@gmail.com'),
+
 ];
