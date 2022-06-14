@@ -15,6 +15,11 @@ class ContactController extends Controller
 
     public function store(ContactRequest $request): RedirectResponse
     {
+        if ($request->filled('full_name')) {
+            // TODO Extract as a honeypot component
+            abort(404, 'Sorry, couldn\'t send the message!');
+        }
+
         session()->flash('success', 'Your message has been sent!');
 
         return back();

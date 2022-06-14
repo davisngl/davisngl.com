@@ -14,6 +14,8 @@
             </div>
         </div>
 
+        <input v-model="form.full_name" type="text" class="hidden">
+
         <div class="mb-5">
             <label for="message" class="block text-sm font-medium">Your Message</label>
             <div class="mt-1">
@@ -50,6 +52,7 @@
 
     const form = useForm({
         email: null,
+        full_name: null,
         message: null
     })
 
