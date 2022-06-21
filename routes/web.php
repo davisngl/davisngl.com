@@ -31,3 +31,15 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [LoginController::class, 'store'])
         ->name('login.store');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::post('logout', function () {
+        Auth::logout();
+
+        request()->session()->invalidate();
+
+        request()->session()->regenerateToken();
+
+        return to_route('home.index');
+    })->name('logout');
+});

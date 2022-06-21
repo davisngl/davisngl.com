@@ -1,5 +1,6 @@
 <template>
     <form @submit.prevent="authenticate">
+        <slot name="rated"></slot>
         <div>
             <label for="email">E-mail address</label>
             <input

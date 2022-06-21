@@ -23,8 +23,12 @@
                 <NavLink :href="route('contact.index')" :active="$page.component === 'Contact'">Contact</NavLink>
             </li>
 
-            <li>
-                <Link href="/login">Authentication</Link>
+            <li v-if="! $page.props.auth">
+                <Link :href="route('login.create')">Sign In</Link>
+            </li>
+
+            <li v-else>
+                <Link :href="route('logout')" method="post" as="button">Sign Out</Link>
             </li>
         </ul>
     </nav>
