@@ -19,12 +19,12 @@
 
         <h1
             v-text="article.title"
-            class="text-4xl pb-10 border-b-2 border-red-600"
+            class="text-4xl pb-7 border-b-2 border-red-600"
         ></h1>
 
         <section
             v-html="article.content"
-            class="my-10"
+            class="mb-10 mt-7"
         ></section>
 
         <div class="w-1/2">

@@ -19,8 +19,17 @@ Route::get('/', function () {
     return inertia('Home');
 })->name('home.index');
 
-Route::get('contact', [ContactController::class, 'index'])->name('contact.index');
-Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('about', function () {
+   return inertia('About');
+})->name('about.index');
 
-Route::get('articles', [ArticleController::class, 'index'])->name('article.index');
-Route::get('articles/{article:slug}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('contact', [ContactController::class, 'index'])
+    ->name('contact.index');
+Route::post('contact', [ContactController::class, 'store'])
+    ->middleware(['throttle:contact'])
+    ->name('contact.store');
+
+Route::get('articles', [ArticleController::class, 'index'])
+    ->name('article.index');
+Route::get('articles/{article:slug}', [ArticleController::class, 'show'])
+    ->name('article.show');

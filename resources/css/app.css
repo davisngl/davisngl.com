@@ -16,3 +16,7 @@ body {
 textarea, input {
     @apply text-gray-900;
 }
+
+p {
+    @apply my-2;
+}

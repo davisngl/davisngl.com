@@ -9,11 +9,12 @@ use Illuminate\Support\Str;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
+/**
+ * @mixin IdeHelperArticle
+ */
 class Article extends Model
 {
     use HasFactory, HasSlug;
-
-    protected $guarded = [];
 
     private const READING_SPEED_PER_WORD = .8;
 

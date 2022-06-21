@@ -1,5 +1,5 @@
 <template>
-    <a :href="sharingUrl">
+    <a :href="sharingUrl" target="_blank">
         <slot />
     </a>
 </template>
