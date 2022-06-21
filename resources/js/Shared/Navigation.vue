@@ -22,6 +22,10 @@
             <li>
                 <NavLink :href="route('contact.index')" :active="$page.component === 'Contact'">Contact</NavLink>
             </li>
+
+            <li>
+                <Link href="/login">Authentication</Link>
+            </li>
         </ul>
     </nav>
 </template>

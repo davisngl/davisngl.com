@@ -9,7 +9,9 @@ createInertiaApp({
     resolve: name => {
         const page = require(`./Pages/${name}`).default
 
-        page.layout ??= Main
+        if (page.layout === undefined) {
+            page.layout = Main
+        }
 
         return page
     },
