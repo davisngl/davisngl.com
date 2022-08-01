@@ -11977,7 +11977,7 @@ function resolveAsset(type, name, warnMissing = true, maybeSelfReference = false
         const Component = instance.type;
         // explicit self name has highest priority
         if (type === COMPONENTS) {
-            const selfName = getComponentName(Component);
+            const selfName = getComponentName(Component, false /* do not include inferred name to avoid breaking existing code */);
             if (selfName &&
                 (selfName === name ||
                     selfName === (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.camelize)(name) ||
@@ -13658,7 +13658,7 @@ function setRef(rawRef, oldRawRef, parentSuspense, vnode, isUnmount = false) {
                         setupState[ref] = value;
                     }
                 }
-                else if ((0,_vue_reactivity__WEBPACK_IMPORTED_MODULE_0__.isRef)(ref)) {
+                else if (_isRef) {
                     ref.value = value;
                     if (rawRef.k)
                         refs[rawRef.k] = value;
@@ -13698,11 +13698,13 @@ function createHydrationFunctions(rendererInternals) {
                     `Performing full mount instead.`);
             patch(null, vnode, container);
             flushPostFlushCbs();
+            container._vnode = vnode;
             return;
         }
         hasMismatch = false;
         hydrateNode(container.firstChild, vnode, null, null, null);
         flushPostFlushCbs();
+        container._vnode = vnode;
         if (hasMismatch && !false) {
             // this error should show up in production
             console.error(`Hydration completed but contains mismatches.`);
@@ -13753,7 +13755,7 @@ function createHydrationFunctions(rendererInternals) {
                 }
                 break;
             case Static:
-                if (domType !== 1 /* ELEMENT */) {
+                if (domType !== 1 /* ELEMENT */ && domType !== 3 /* TEXT */) {
                     nextNode = onMismatch();
                 }
                 else {
@@ -13764,7 +13766,10 @@ function createHydrationFunctions(rendererInternals) {
                     const needToAdoptContent = !vnode.children.length;
                     for (let i = 0; i < vnode.staticCount; i++) {
                         if (needToAdoptContent)
-                            vnode.children += nextNode.outerHTML;
+                            vnode.children +=
+                                nextNode.nodeType === 1 /* ELEMENT */
+                                    ? nextNode.outerHTML
+                                    : nextNode.data;
                         if (i === vnode.staticCount - 1) {
                             vnode.anchor = nextNode;
                         }
@@ -16481,10 +16486,10 @@ function getExposeProxy(instance) {
 }
 const classifyRE = /(?:^|[-_])(\w)/g;
 const classify = (str) => str.replace(classifyRE, c => c.toUpperCase()).replace(/[-_]/g, '');
-function getComponentName(Component) {
+function getComponentName(Component, includeInferred = true) {
     return (0,_vue_shared__WEBPACK_IMPORTED_MODULE_1__.isFunction)(Component)
         ? Component.displayName || Component.name
-        : Component.name;
+        : Component.name || (includeInferred && Component.__name);
 }
 /* istanbul ignore next */
 function formatComponentName(instance, Component, isRoot = false) {
@@ -16932,7 +16937,7 @@ function isMemoSame(cached, memo) {
 }
 
 // Core API ------------------------------------------------------------------
-const version = "3.2.36";
+const version = "3.2.37";
 const _ssrUtils = {
     createComponentInstance,
     setupComponent,
@@ -16942,7 +16947,7 @@ const _ssrUtils = {
     normalizeVNode
 };
 /**
- * SSR utils for \@vue/server-renderer. Only exposed in cjs builds.
+ * SSR utils for \@vue/server-renderer. Only exposed in ssr-possible builds.
  * @internal
  */
 const ssrUtils = (_ssrUtils );
@@ -20008,6 +20013,7 @@ var $concat = bind.call(Function.call, Array.prototype.concat);
 var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
 var $replace = bind.call(Function.call, String.prototype.replace);
 var $strSlice = bind.call(Function.call, String.prototype.slice);
+var $exec = bind.call(Function.call, RegExp.prototype.exec);
 
 /* adapted from https://github.com/lodash/lodash/blob/4.17.15/dist/lodash.js#L6735-L6744 */
 var rePropName = /[^%.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|%$))/g;
@@ -20063,6 +20069,9 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 		throw new $TypeError('"allowMissing" argument must be a boolean');
 	}
 
+	if ($exec(/^%?[^%]*%?$/g, name) === null) {
+		throw new $SyntaxError('`%` may not be present anywhere but at the beginning and end of the intrinsic name');
+	}
 	var parts = stringToPath(name);
 	var intrinsicBaseName = parts.length > 0 ? parts[0] : '';
 
@@ -24966,6 +24975,7 @@ var stringify = function stringify(
     object,
     prefix,
     generateArrayPrefix,
+    commaRoundTrip,
     strictNullHandling,
     skipNulls,
     encoder,
@@ -25030,7 +25040,7 @@ var stringify = function stringify(
                 for (var i = 0; i < valuesArray.length; ++i) {
                     valuesJoined += (i === 0 ? '' : ',') + formatter(encoder(valuesArray[i], defaults.encoder, charset, 'value', format));
                 }
-                return [formatter(keyValue) + '=' + valuesJoined];
+                return [formatter(keyValue) + (commaRoundTrip && isArray(obj) && valuesArray.length === 1 ? '[]' : '') + '=' + valuesJoined];
             }
             return [formatter(keyValue) + '=' + formatter(encoder(obj, defaults.encoder, charset, 'value', format))];
         }
@@ -25054,6 +25064,8 @@ var stringify = function stringify(
         objKeys = sort ? keys.sort(sort) : keys;
     }
 
+    var adjustedPrefix = commaRoundTrip && isArray(obj) && obj.length === 1 ? prefix + '[]' : prefix;
+
     for (var j = 0; j < objKeys.length; ++j) {
         var key = objKeys[j];
         var value = typeof key === 'object' && typeof key.value !== 'undefined' ? key.value : obj[key];
@@ -25063,8 +25075,8 @@ var stringify = function stringify(
         }
 
         var keyPrefix = isArray(obj)
-            ? typeof generateArrayPrefix === 'function' ? generateArrayPrefix(prefix, key) : prefix
-            : prefix + (allowDots ? '.' + key : '[' + key + ']');
+            ? typeof generateArrayPrefix === 'function' ? generateArrayPrefix(adjustedPrefix, key) : adjustedPrefix
+            : adjustedPrefix + (allowDots ? '.' + key : '[' + key + ']');
 
         sideChannel.set(object, step);
         var valueSideChannel = getSideChannel();
@@ -25073,6 +25085,7 @@ var stringify = function stringify(
             value,
             keyPrefix,
             generateArrayPrefix,
+            commaRoundTrip,
             strictNullHandling,
             skipNulls,
             encoder,
@@ -25169,6 +25182,10 @@ module.exports = function (object, opts) {
     }
 
     var generateArrayPrefix = arrayPrefixGenerators[arrayFormat];
+    if (opts && 'commaRoundTrip' in opts && typeof opts.commaRoundTrip !== 'boolean') {
+        throw new TypeError('`commaRoundTrip` must be a boolean, or absent');
+    }
+    var commaRoundTrip = generateArrayPrefix === 'comma' && opts && opts.commaRoundTrip;
 
     if (!objKeys) {
         objKeys = Object.keys(obj);
@@ -25189,6 +25206,7 @@ module.exports = function (object, opts) {
             obj[key],
             key,
             generateArrayPrefix,
+            commaRoundTrip,
             options.strictNullHandling,
             options.skipNulls,
             options.encode ? options.encoder : null,

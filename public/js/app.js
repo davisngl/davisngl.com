@@ -14,7 +14,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Shared_Navigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Shared/Navigation */ "./resources/js/Shared/Navigation.vue");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Main',
+  __name: 'Main',
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -47,7 +47,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Article',
+  __name: 'Article',
   props: {
     article: Object
   },
@@ -83,7 +83,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Articles',
+  __name: 'Articles',
   props: {
     articles: Array
   },
@@ -120,7 +120,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Contact',
+  __name: 'Contact',
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -169,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Home',
+  __name: 'Home',
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -205,7 +205,7 @@ var __default__ = {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/Object.assign(__default__, {
-  name: 'Login',
+  __name: 'Login',
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -252,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'NavLink',
+  __name: 'NavLink',
   props: {
     active: Boolean
   },
@@ -288,7 +288,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Navigation',
+  __name: 'Navigation',
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
@@ -318,7 +318,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'Notification',
+  __name: 'Notification',
   props: {
     type: {
       type: String,
@@ -360,7 +360,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'ShareLink',
+  __name: 'ShareLink',
   props: {
     urlToShare: String,
     platform: String
