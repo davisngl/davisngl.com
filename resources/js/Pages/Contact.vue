@@ -47,8 +47,8 @@
 </template>
 
 <script setup>
-    import { useForm, Head } from "@inertiajs/inertia-vue3";
-    import Notification from "../Shared/Notification";
+    import { useForm, Head } from "@inertiajs/vue3";
+    import Notification from "@/Shared/Notification.vue";
 
     const form = useForm({
         email: null,

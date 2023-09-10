@@ -5,8 +5,7 @@
 </template>
 
 <script setup>
-import { Link } from "@inertiajs/inertia-vue3"
-import { defineProps } from "vue"
+import { Link } from "@inertiajs/vue3"
 
 defineProps({
     active: Boolean,

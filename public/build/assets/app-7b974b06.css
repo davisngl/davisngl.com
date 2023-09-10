@@ -1,0 +1,1 @@
+@tailwind base;@tailwind components;@tailwind utilities;body{font-family:Space Mono,monospace;background:url(/build/assets/tile-869dfa26.png) repeat;background-size:30px 30px;color:#639}.error-message{@apply text-red-600 italic;}textarea,input{@apply text-gray-900;}p{@apply my-2;}

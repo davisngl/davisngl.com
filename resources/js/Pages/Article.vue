@@ -39,8 +39,8 @@
 </template>
 
 <script setup>
-import { Link, Head } from "@inertiajs/inertia-vue3"
-import ShareLink from "../Shared/ShareLink";
+import { Link, Head } from "@inertiajs/vue3"
+import ShareLink from "@/Shared/ShareLink.vue"
 
 defineProps({
     article: Object
