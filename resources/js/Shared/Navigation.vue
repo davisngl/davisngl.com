@@ -1,3 +1,8 @@
+<script setup>
+import { Link } from '@inertiajs/vue3'
+import NavLink from '@/Shared/NavLink.vue'
+</script>
+
 <template>
     <nav class="flex justify-between">
         <ul class="flex">
@@ -34,23 +39,6 @@
                     >Contact</NavLink
                 >
             </li>
-
-            <li v-if="!$page.props.auth">
-                <Link :href="route('login.create')">Sign In</Link>
-            </li>
-
-            <li v-else>
-                <Link :href="route('logout')" method="post" as="button"
-                    >Sign Out</Link
-                >
-            </li>
         </ul>
     </nav>
 </template>
-
-<script setup>
-import { Link } from "@inertiajs/vue3";
-import NavLink from "@/Shared/NavLink.vue";
-</script>
-
-<style scoped></style>
