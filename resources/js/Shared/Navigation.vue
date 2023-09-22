@@ -21,7 +21,8 @@ import NavLink from '@/Shared/NavLink.vue'
             </li>
 
             <li>
-                <Link href="/projects">Projects</Link>
+                <a href="#">Projects</a>
+                <!--                <Link href="/projects">Projects</Link>-->
             </li>
 
             <li>
