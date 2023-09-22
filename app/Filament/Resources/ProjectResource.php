@@ -33,7 +33,7 @@ class ProjectResource extends Resource
                     ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
                 TextInput::make('slug')
-                    ->unique('projects'),
+                    ->unique('projects', ignoreRecord: true),
 
                 SpatieMediaLibraryFileUpload::make('images')
                     ->columnSpanFull()

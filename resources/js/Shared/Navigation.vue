@@ -1,5 +1,4 @@
 <script setup>
-import { Link } from '@inertiajs/vue3'
 import NavLink from '@/Shared/NavLink.vue'
 </script>
 
@@ -10,35 +9,37 @@ import NavLink from '@/Shared/NavLink.vue'
                 <NavLink
                     :href="route('home.index')"
                     :active="$page.component === 'Home'"
-                    >Home</NavLink
-                >
+                >Home</NavLink>
             </li>
         </ul>
 
         <ul class="flex w-1/2 justify-around">
             <li>
-                <Link href="/about">About</Link>
+                <NavLink
+                    :href="route('about.index')"
+                    :active="$page.component === 'About'"
+                >About</NavLink>
             </li>
 
             <li>
-                <a href="#">Projects</a>
-                <!--                <Link href="/projects">Projects</Link>-->
+                <NavLink
+                    :href="route('project.index')"
+                    :active="$page.component === 'Projects'"
+                >Projects</NavLink>
             </li>
 
             <li>
                 <NavLink
                     :href="route('article.index')"
                     :active="$page.component === 'Articles'"
-                    >Articles</NavLink
-                >
+                >Articles</NavLink>
             </li>
 
             <li>
                 <NavLink
                     :href="route('contact.index')"
                     :active="$page.component === 'Contact'"
-                    >Contact</NavLink
-                >
+                >Contact</NavLink>
             </li>
         </ul>
     </nav>
