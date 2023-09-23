@@ -19,7 +19,7 @@ class ProjectController extends Controller
     public function show(Project $project): Response
     {
         return inertia('Project', [
-            'projects' => ProjectResource::make($project),
+            'project' => ProjectResource::make($project),
         ]);
     }
 }

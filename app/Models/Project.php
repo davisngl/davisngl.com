@@ -9,6 +9,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+/**
+ * @mixin IdeHelperProject
+ */
 class Project extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
@@ -31,9 +34,22 @@ class Project extends Model implements HasMedia
             ->addMediaCollection('images')
             ->registerMediaConversions(function () {
                 $this
-                    ->addMediaConversion('thumbnail')
-                    ->width(300)
-                    ->height(200);
+                    ->addMediaConversion('thumb')
+                    ->width(500)
+                    ->height(300);
             });
+    }
+
+    public function getAllMediaUrls(): array
+    {
+        $media = $this->getMedia('*');
+
+        if (! $media->count()) {
+            return [];
+        }
+
+        return $media
+            ->flatMap(fn (Media $media) => $media->getAvailableFullUrl([]))
+            ->toArray();
     }
 }

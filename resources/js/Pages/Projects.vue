@@ -15,10 +15,16 @@ const projects = props.projects.data
 <template>
     <Head title="All Projects" />
 
-    <div class="grid gap-4 grid-cols-3 grid-rows-3" v-if="projects.length">
-        <Link :href="route('project.show', { project: project.id })" v-for="project in projects" :key="project.id">
+    <div class="grid gap-4 grid-cols-2 grid-rows-2" v-if="projects.length">
+        <Link
+            :href="route('project.show', { project: project.slug })"
+            v-for="project in projects"
+            :key="project.id"
+        >
             <div>
-                <h2>{{ project.name }}</h2>
+                <img :src="project.images.thumb" :alt="project.name" loading="lazy">
+                <div class="py-2"></div>
+                <h2 class="font-semibold text-center text-xl">{{ project.name }}</h2>
             </div>
         </Link>
     </div>
