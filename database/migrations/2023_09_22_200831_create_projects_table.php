@@ -12,6 +12,7 @@ return new class extends Migration {
 			$table->string('name');
             $table->string('slug');
 			$table->text('description')->nullable();
+            $table->json('technologies')->nullable();
 			$table->json('urls')->nullable();
 			$table->timestamps();
 		});

@@ -17,7 +17,8 @@ class Project extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     protected $casts = [
-        'urls' => 'array',
+        'urls'         => 'array',
+        'technologies' => 'array',
     ];
 
     public function registerMediaConversions(Media $media = null): void
@@ -49,7 +50,7 @@ class Project extends Model implements HasMedia
         }
 
         return $media
-            ->flatMap(fn (Media $media) => $media->getAvailableFullUrl([]))
+            ->flatMap(fn(Media $media) => $media->getAvailableFullUrl([]))
             ->toArray();
     }
 }

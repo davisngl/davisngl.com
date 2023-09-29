@@ -1,12 +1,12 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
-import Notification from "@/Shared/Notification.vue";
+import Notification from '@/Shared/Notification.vue'
 
 const props = defineProps({
     projects: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 })
 
 const projects = props.projects.data
@@ -15,21 +15,94 @@ const projects = props.projects.data
 <template>
     <Head title="All Projects" />
 
-    <div class="grid gap-4 grid-cols-2 grid-rows-2" v-if="projects.length">
-        <Link
-            :href="route('project.show', { project: project.slug })"
+    <div class="mt-32 space-y-12">
+        <article
+            v-if="projects.length"
             v-for="project in projects"
             :key="project.id"
         >
-            <div>
-                <img :src="project.images.thumb" :alt="project.name" loading="lazy">
-                <div class="py-2"></div>
-                <h2 class="font-semibold text-center text-xl">{{ project.name }}</h2>
-            </div>
-        </Link>
-    </div>
+            <Link :href="route('project.show', { project: project.slug })">
+                <div class="flex flex-col space-y-5">
+                    <div class="flex space-x-5">
+                        <aside class="w-1/2">
+                            <img
+                                :src="project.images.thumb"
+                                :alt="project.name"
+                                loading="lazy"
+                            />
+                        </aside>
 
-    <Notification type="warning" title="Oh-ouh..." v-else>
-        Seems like someone's a lazy developer... Give him a message on LinkedIn and keep him busy!
-    </Notification>
+                        <aside class="w-1/2">
+                            <h2 class="text-center text-xl font-semibold">
+                                {{ project.name }}
+                            </h2>
+
+                            <p
+                                class="prose text-white"
+                                v-html="project.description"
+                            ></p>
+                        </aside>
+                    </div>
+                </div>
+            </Link>
+
+            <div class="mt-5 flex space-x-2">
+                <Link
+                    class="glow border border-white px-4 py-2"
+                    :href="route('project.show', { project: project.slug })"
+                    >Open</Link
+                >
+
+                <a
+                    class="glow flex items-center justify-between space-x-3 border border-white px-4 py-2"
+                    v-if="project.urls?.github"
+                    :href="project.urls?.github"
+                    target="_blank"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="h-6 w-6"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"
+                        />
+                    </svg>
+                    <span>Code</span>
+                </a>
+
+                <a
+                    class="glow flex items-center justify-between space-x-3 border border-white px-4 py-2"
+                    v-if="project.urls?.live"
+                    :href="project.urls?.live"
+                    target="_blank"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="h-6 w-6"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+                        />
+                    </svg>
+                    <span>Live URL</span>
+                </a>
+            </div>
+        </article>
+
+        <Notification type="warning" title="Oh-ouh..." v-else>
+            There's no projects as of yet
+        </Notification>
+    </div>
 </template>

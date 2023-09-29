@@ -4,7 +4,6 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /** @mixin \App\Models\Project */
 class ProjectResource extends JsonResource
@@ -16,7 +15,7 @@ class ProjectResource extends JsonResource
             'name'        => $this->name,
             'slug'        => $this->slug,
             'description' => $this->description,
-            'urls'        => $this->urls,
+            'urls'        => collect($this->urls)->flatMap(fn ($url) => [$url['key'] => $url['value']]),
             'images'      => [
                 'thumb' => $this->getFirstMediaUrl('images', 'thumb'),
                 'all'   => $this->getAllMediaUrls(),

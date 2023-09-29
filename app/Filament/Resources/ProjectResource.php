@@ -5,8 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
@@ -42,9 +44,28 @@ class ProjectResource extends Resource
                     ->multiple()
                     ->reorderable(),
 
+                TagsInput::make('technologies')
+                    ->suggestions([
+                        'Laravel',
+                        'TailwindCSS',
+                        'AlpineJS',
+                        'Livewire',
+                        'InertiaJS',
+                        'SocketIO',
+                        'VueJS',
+                    ]),
+
                 RichEditor::make('description')
                     ->columnSpanFull()
-                    ->maxLength(10_000)
+                    ->maxLength(10_000),
+
+                Repeater::make('urls')
+                    ->label('URLs')
+                    ->helperText('URLs for the project (repository link, demo/live link) etc.')
+                    ->schema([
+                        TextInput::make('key')->required(),
+                        TextInput::make('value')->required(),
+                    ])
             ]);
     }
 
