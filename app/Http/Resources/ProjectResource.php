@@ -11,12 +11,13 @@ class ProjectResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'          => $this->id,
-            'name'        => $this->name,
-            'slug'        => $this->slug,
-            'description' => $this->description,
-            'urls'        => collect($this->urls)->flatMap(fn ($url) => [$url['key'] => $url['value']]),
-            'images'      => [
+            'id'           => $this->id,
+            'name'         => $this->name,
+            'slug'         => $this->slug,
+            'description'  => $this->description,
+            'technologies' => $this->technologies,
+            'urls'         => collect($this->urls)->flatMap(fn($url) => [$url['key'] => $url['value']]),
+            'images'       => [
                 'thumb' => $this->getFirstMediaUrl('images', 'thumb'),
                 'all'   => $this->getAllMediaUrls(),
             ],

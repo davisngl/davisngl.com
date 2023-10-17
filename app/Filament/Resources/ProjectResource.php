@@ -3,10 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProjectResource\Pages;
-use App\Filament\Resources\ProjectResource\RelationManagers;
 use App\Models\Project;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -27,45 +27,56 @@ class ProjectResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+            ->columns(5)
             ->schema([
-                TextInput::make('name')
-                    ->label('Project Name')
-                    ->minLength(3)
-                    ->maxLength(255)
-                    ->live(onBlur: true)
-                    ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
+                Section::make('Main Data')
+                    ->columnSpan(3)
+                    ->columns(2)
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Project Name')
+                            ->minLength(3)
+                            ->maxLength(255)
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn(Set $set, ?string $state) => $set('slug', Str::slug($state))),
 
-                TextInput::make('slug')
-                    ->unique('projects', ignoreRecord: true),
+                        TextInput::make('slug')
+                            ->unique('projects', ignoreRecord: true),
 
-                SpatieMediaLibraryFileUpload::make('images')
-                    ->columnSpanFull()
-                    ->collection('images')
-                    ->visibility('public')
-                    ->multiple()
-                    ->reorderable(),
-
-                TagsInput::make('technologies')
-                    ->suggestions([
-                        'Laravel',
-                        'TailwindCSS',
-                        'AlpineJS',
-                        'Livewire',
-                        'InertiaJS',
-                        'SocketIO',
-                        'VueJS',
+                        RichEditor::make('description')
+                            ->columnSpanFull()
+                            ->maxLength(10_000),
                     ]),
 
-                RichEditor::make('description')
-                    ->columnSpanFull()
-                    ->maxLength(10_000),
-
-                Repeater::make('urls')
-                    ->label('URLs')
-                    ->helperText('URLs for the project (repository link, demo/live link) etc.')
+                Section::make('Meta Info')
+                    ->columnSpan(2)
+                    ->columns(1)
                     ->schema([
-                        TextInput::make('key')->required(),
-                        TextInput::make('value')->required(),
+                        SpatieMediaLibraryFileUpload::make('images')
+                            ->columnSpanFull()
+                            ->collection('images')
+                            ->visibility('public')
+                            ->multiple()
+                            ->reorderable(),
+
+                        TagsInput::make('technologies')
+                            ->suggestions([
+                                'Laravel',
+                                'TailwindCSS',
+                                'AlpineJS',
+                                'Livewire',
+                                'InertiaJS',
+                                'SocketIO',
+                                'VueJS',
+                            ]),
+
+                        Repeater::make('urls')
+                            ->label('URLs')
+                            ->helperText('URLs for the project (repository link, demo/live link) etc.')
+                            ->schema([
+                                TextInput::make('key')->required(),
+                                TextInput::make('value')->required(),
+                            ])
                     ])
             ]);
     }

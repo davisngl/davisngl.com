@@ -18,7 +18,7 @@
             </SwiperSlide>
         </Swiper>
 
-        <p v-if="props.helperText" class="text-xs">{{ props.helperText }}</p>
+        <p v-if="props.helperText" class="text-xs text-gray-400">{{ props.helperText }}</p>
     </div>
 </template>
 
