@@ -1,5 +1,6 @@
 <script setup>
 import Slider from '@/Components/Support/Slider.vue'
+import { Head } from '@inertiajs/vue3'
 
 const props = defineProps({
     project: Object,
@@ -9,15 +10,7 @@ const project = props.project.data
 </script>
 
 <template>
-    Hello, this is {{ project.name }}
-    <Slider>
-        <img
-            class="object-cover object-center"
-            :src="image"
-            alt=""
-            v-for="image in project.images.all"
-            width="768"
-            height="390"
-        />
-    </Slider>
+    <Head :title="project.name" />
+
+    <Slider :images="project.images.all" />
 </template>

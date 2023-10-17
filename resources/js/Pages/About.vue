@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="text-3xl font-bold">Hey there!</h1>
+        <h1 class="text-3xl font-bold">Glad to see you visiting!</h1>
         <section class="my-10">
             <p>
                 I am Davis. Been doing web development professionally for over 4
@@ -52,5 +52,3 @@
         </section>
     </div>
 </template>
-
-<script setup></script>

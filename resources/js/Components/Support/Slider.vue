@@ -1,38 +1,72 @@
-<script setup>
-import { onMounted, ref } from 'vue'
-import Glide from '@glidejs/glide'
-import { Autoplay, Controls } from '@glidejs/glide/entry/entry-modular.js'
-
-const slideElement = ref()
-
-onMounted(() => new Glide(slideElement.value).mount({ Controls, Autoplay }))
-</script>
-
 <template>
-    <div class="glide" ref="slideElement">
-        <div class="glide__track relative" data-glide-el="track">
-            <ul class="glide__slides">
-                <slot></slot>
-            </ul>
+    <div class="flex flex-col space-y-2 items-center">
+        <Swiper
+            :modules="modules"
+            :pagination="{
+            clickable: true,
+        }"
+            :space-between="50"
+            navigation
+            :zoom="{
+            maxRatio: 3
+        }"
+        >
+            <SwiperSlide v-for="image in props.images" :key="image">
+                <div class="swiper-zoom-container">
+                    <img :src="image" class="w-full"/>
+                </div>
+            </SwiperSlide>
+        </Swiper>
 
-            <div class="glide__arrows absolute flex justify-between inset-0 items-center" data-glide-el="controls">
-                <button
-                    class="glide__arrow glide__arrow--left flex justify-center align-middle bg-gray-500 w-10 h-10 bg-opacity-20 hover:bg-opacity-50 transition"
-                    data-glide-dir="<"
-                >
-                    &lsaquo;
-                </button>
-                <button
-                    class="glide__arrow glide__arrow--right flex justify-center align-middle bg-gray-500 w-10 h-10 bg-opacity-20 hover:bg-opacity-50 transition"
-                    data-glide-dir=">"
-                >
-                    &rsaquo;
-                </button>
-            </div>
-        </div>
+        <p v-if="props.helperText" class="text-xs">{{ props.helperText }}</p>
     </div>
 </template>
 
-<style scoped>
-@import '@glidejs/glide/dist/css/glide.core.min.css';
+<script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation, Pagination, Zoom } from 'swiper/modules'
+import 'swiper/css'
+import 'swiper/css/zoom'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+
+const modules = [
+    Navigation,
+    Pagination,
+    Zoom,
+]
+
+const props = defineProps({
+    images: {
+        type: Array,
+        required: true,
+    },
+    helperText: {
+        type: String,
+        default: 'Double-click to zoom the image'
+    }
+})
+</script>
+
+<style>
+
+.swiper {
+    @apply w-full;
+}
+
+.swiper-slide {
+    overflow: visible;
+}
+
+.swiper-pagination-bullet {
+    @apply w-3 h-3;
+}
+
+.swiper-pagination-bullet-active {
+    @apply bg-red-300;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    @apply text-red-300;
+}
 </style>
