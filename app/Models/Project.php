@@ -53,4 +53,9 @@ class Project extends Model implements HasMedia
             ->map(fn(Media $media) => $media->getUrl())
             ->toArray();
     }
+
+    public function url(): string
+    {
+        return route('project.show', ['project' => $this]);
+    }
 }

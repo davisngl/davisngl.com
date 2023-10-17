@@ -14,6 +14,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
@@ -73,12 +74,19 @@ class ProjectResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('id')->label('Project ID'),
+                Tables\Columns\TextColumn::make('name')
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Action::make('open_in_website')
+                    ->link()
+                    ->label('Show on website')
+                    ->color('info')
+                    ->icon('heroicon-m-link')
+                    ->url(fn(Project $project): string => $project->url(), shouldOpenInNewTab: true),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
