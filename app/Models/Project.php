@@ -43,14 +43,14 @@ class Project extends Model implements HasMedia
 
     public function getAllMediaUrls(): array
     {
-        $media = $this->getMedia('*');
+        $media = $this->getMedia('images');
 
         if (! $media->count()) {
             return [];
         }
 
         return $media
-            ->flatMap(fn(Media $media) => $media->getAvailableFullUrl([]))
+            ->map(fn(Media $media) => $media->getUrl())
             ->toArray();
     }
 }
