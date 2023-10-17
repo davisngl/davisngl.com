@@ -54,7 +54,7 @@
 
 <script setup>
 import { Link, Head } from '@inertiajs/vue3'
-import ShareLink from '@/Shared/ShareLink.vue'
+import ShareLink from '@/Components/ShareLink.vue'
 
 defineProps({
     article: Object,

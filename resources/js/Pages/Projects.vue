@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
-import Notification from '@/Shared/Notification.vue'
+import Notification from '@/Components/Notification.vue'
 
 const props = defineProps({
     projects: {
@@ -46,15 +46,15 @@ const projects = props.projects.data
                 </div>
             </Link>
 
-            <div class="mt-5 flex space-x-2">
+            <div class="mt-5 flex items-center space-x-2">
                 <Link
-                    class="glow border border-white px-4 py-2"
+                    class="glow border border-white px-4"
                     :href="route('project.show', { project: project.slug })"
                     >Open</Link
                 >
 
                 <a
-                    class="glow flex items-center justify-between space-x-3 border border-white px-4 py-2"
+                    class="glow flex items-center justify-between space-x-3 border border-white px-4"
                     v-if="project.urls?.github"
                     :href="project.urls?.github"
                     target="_blank"
@@ -77,7 +77,7 @@ const projects = props.projects.data
                 </a>
 
                 <a
-                    class="glow flex items-center justify-between space-x-3 border border-white px-4 py-2"
+                    class="glow flex items-center justify-between space-x-3 border border-white px-4"
                     v-if="project.urls?.live"
                     :href="project.urls?.live"
                     target="_blank"
