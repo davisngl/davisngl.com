@@ -7,35 +7,19 @@ import NavLink from '@/Components/NavLink.vue'
         <ul class="flex">
             <li>
                 <NavLink
-                    :href="route('home.index')"
-                    :active="$page.component === 'Home'"
+                    :href="route('about.index')"
+                    :active="$page.component === 'About'"
                     >Home</NavLink
                 >
             </li>
         </ul>
 
-        <ul class="flex w-1/2 justify-around">
-            <li>
-                <NavLink
-                    :href="route('about.index')"
-                    :active="$page.component === 'About'"
-                    >About</NavLink
-                >
-            </li>
-
+        <ul class="flex w-1/2 space-x-10 justify-end">
             <li>
                 <NavLink
                     :href="route('project.index')"
                     :active="$page.component === 'Projects'"
                     >Projects</NavLink
-                >
-            </li>
-
-            <li>
-                <NavLink
-                    :href="route('article.index')"
-                    :active="$page.component === 'Articles'"
-                    >Articles</NavLink
                 >
             </li>
 

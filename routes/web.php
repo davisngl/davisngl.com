@@ -5,9 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return inertia('Home');
-})->name('home.index');
+Route::redirect('/', '/about');
 
 Route::get('about', function () {
    return inertia('About');
@@ -28,15 +26,3 @@ Route::get('projects', [ProjectController::class, 'index'])
     ->name('project.index');
 Route::get('projects/{project:slug}', [ProjectController::class, 'show'])
     ->name('project.show');
-
-Route::middleware('auth')->group(function () {
-    Route::post('logout', function () {
-        Auth::logout();
-
-        request()->session()->invalidate();
-
-        request()->session()->regenerateToken();
-
-        return to_route('home.index');
-    })->name('logout');
-});
