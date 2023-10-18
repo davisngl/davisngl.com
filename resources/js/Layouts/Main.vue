@@ -1,17 +1,16 @@
-<template>
-    <main class="max-w-4xl mx-auto">
-        <Navigation class="mt-10"/>
+<script setup>
+import Navigation from '@/Components/Navigation.vue'
+</script>
 
-        <section class="max-w-3xl mx-auto mt-12 leading-9">
+<template>
+    <main class="mx-auto max-w-4xl">
+        <Navigation class="mt-10" />
+
+        <section
+            class="mx-auto max-w-4xl leading-9"
+            :class="[ $page.component === 'Project' ? 'mt-7' : 'mt-20' ]"
+        >
             <slot />
         </section>
     </main>
 </template>
-
-<script setup>
-import Navigation from "../Shared/Navigation"
-</script>
-
-<style scoped>
-
-</style>

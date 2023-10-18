@@ -1,0 +1,21 @@
+{
+  "resources/img/tile.png": {
+    "file": "assets/tile-869dfa26.png",
+    "src": "resources/img/tile.png"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-a48ddc12.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "assets": [
+      "assets/tile-869dfa26.png"
+    ],
+    "css": [
+      "assets/app-a48ddc12.css"
+    ],
+    "file": "assets/app-611ef2ed.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}
