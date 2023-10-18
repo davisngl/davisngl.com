@@ -29,6 +29,8 @@ const projects = props.projects.data
                                 :src="project.images.thumb"
                                 :alt="project.name"
                                 loading="lazy"
+                                width="438"
+                                height="223"
                             />
                         </aside>
 
