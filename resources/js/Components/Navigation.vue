@@ -2,13 +2,6 @@
 import NavLink from '@/Components/NavLink.vue'
 import { ref } from 'vue'
 
-const props = defineProps({
-    isMobileNavigationOpen: {
-        type: Boolean,
-        default: false,
-    },
-})
-
 const mobileNavigation = ref(null)
 
 const toggleMobileNavigation = () => {
@@ -66,9 +59,12 @@ const toggleMobileNavigation = () => {
 
         <nav
             ref="mobileNavigation"
-            class="absolute inset-y-0 text-xl left-0 flex min-h-full space-y-2 w-64 -translate-x-full transform flex-col bg-gray-800 bg-opacity-95 pt-10 duration-200"
+            class="fixed inset-y-0 left-0 flex h-screen w-64 -translate-x-full transform flex-col space-y-2 bg-gray-800 bg-opacity-95 pt-10 text-xl duration-200"
         >
-            <div class="mx-7 flex justify-end focus:outline-none" @click="toggleMobileNavigation">
+            <div
+                class="mx-7 flex justify-end focus:outline-none"
+                @click="toggleMobileNavigation"
+            >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"

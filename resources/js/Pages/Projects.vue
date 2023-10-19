@@ -15,7 +15,7 @@ const projects = props.projects.data
 <template>
     <Head title="All Projects" />
 
-    <div class="my-32 flex flex-col space-y-12 px-10 lg:px-0">
+    <div class="flex flex-col space-y-12 px-10 lg:px-0">
         <article
             v-if="projects.length"
             v-for="project in projects"

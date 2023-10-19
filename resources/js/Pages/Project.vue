@@ -15,13 +15,15 @@ const project = props.project.data
 
     <div class="mb-5">
         <Link class="text-sm hover:underline" :href="route('project.index')"
-            >&laquo; Back to projects</Link
-        >
+            >&laquo; Back to projects
+        </Link>
     </div>
 
     <section class="mt-10">
-        <div class="flex flex-col mb-5 items-center">
-            <h1 class="text-2xl md:text-3xl font-semibold mb-1">{{ project.name }}</h1>
+        <div class="mb-5 flex flex-col items-center">
+            <h1 class="mb-1 text-2xl font-semibold md:text-3xl">
+                {{ project.name }}
+            </h1>
             <ul v-if="project.urls" v-cloak>
                 <li class="text-xs" v-for="url in project.urls">
                     <a
@@ -58,15 +60,17 @@ const project = props.project.data
         />
 
         <article
-            class="min-w-full block prose prose-p:text-gray-100 mt-5 text-justify md:text-left"
+            class="prose mt-5 block min-w-full text-justify prose-p:text-gray-100 md:text-left"
             v-html="project.description"
         ></article>
 
         <div class="mt-5">
             <h2 class="mb-3 text-2xl font-semibold">Technologies used</h2>
-            <ul class="flex space-x-2 text-sm">
+            <ul
+                class="mt-5 grid w-full grid-cols-2 gap-3 text-sm leading-normal sm:grid-cols-3 md:flex md:space-x-2"
+            >
                 <li
-                    class="rounded-md border border-gray-100 px-3 py-1 text-white transition hover:border-red-500"
+                    class="block cursor-pointer rounded-lg border border-gray-100 px-3 py-1.5 text-center transition hover:border-red-500 hover:text-gray-100"
                     v-for="technology in project.technologies"
                     :key="technology"
                 >
