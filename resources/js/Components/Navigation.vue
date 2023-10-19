@@ -59,7 +59,7 @@ const toggleMobileNavigation = () => {
 
         <nav
             ref="mobileNavigation"
-            class="fixed inset-y-0 left-0 flex h-screen w-64 -translate-x-full transform flex-col space-y-2 bg-gray-800 bg-opacity-95 pt-10 text-xl duration-200"
+            class="fixed inset-y-0 left-0 flex h-screen w-64 -translate-x-full transform flex-col space-y-2 bg-gray-800 bg-opacity-95 pt-10 text-xl duration-200 z-10"
         >
             <div
                 class="mx-7 flex justify-end focus:outline-none"
