@@ -21,7 +21,7 @@ const project = props.project.data
 
     <section class="mt-10">
         <div class="flex flex-col mb-5 items-center">
-            <h1 class="text-3xl font-semibold mb-1">{{ project.name }}</h1>
+            <h1 class="text-2xl md:text-3xl font-semibold mb-1">{{ project.name }}</h1>
             <ul v-if="project.urls" v-cloak>
                 <li class="text-xs" v-for="url in project.urls">
                     <a
@@ -58,7 +58,7 @@ const project = props.project.data
         />
 
         <article
-            class="min-w-full block prose prose-p:text-gray-100 mt-5"
+            class="min-w-full block prose prose-p:text-gray-100 mt-5 text-justify md:text-left"
             v-html="project.description"
         ></article>
 

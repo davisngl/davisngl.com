@@ -15,40 +15,39 @@ const projects = props.projects.data
 <template>
     <Head title="All Projects" />
 
-    <div class="mt-32 space-y-12">
+    <div class="my-32 flex flex-col space-y-12 px-10 lg:px-0">
         <article
             v-if="projects.length"
             v-for="project in projects"
             :key="project.id"
         >
             <Link :href="route('project.show', { project: project.slug })">
-                <div class="flex flex-col space-y-5">
-                    <div class="flex space-x-5">
-                        <aside class="w-1/2">
-                            <img
-                                :src="project.images.thumb"
-                                :alt="project.name"
-                                loading="lazy"
-                                width="438"
-                                height="223"
-                            />
-                        </aside>
+                <div class="flex flex-col md:flex-row md:space-x-5">
+                    <aside class="w-full md:w-1/2">
+                        <img
+                            class="w-full"
+                            :src="project.images.thumb"
+                            :alt="project.name"
+                            loading="lazy"
+                            width="438"
+                            height="223"
+                        />
+                    </aside>
 
-                        <aside class="w-1/2">
-                            <h2 class="text-center text-xl font-semibold">
-                                {{ project.name }}
-                            </h2>
+                    <aside class="w-full md:w-1/2 mt-3 md:mt-0">
+                        <h2 class="text-center text-xl font-semibold">
+                            {{ project.name }}
+                        </h2>
 
-                            <p
-                                class="prose text-white"
-                                v-html="project.description"
-                            ></p>
-                        </aside>
-                    </div>
+                        <p
+                            class="prose text-white"
+                            v-html="project.description"
+                        ></p>
+                    </aside>
                 </div>
             </Link>
 
-            <div class="mt-5 flex items-center space-x-2">
+            <div class="mt-5 hidden md:items-center space-x-2 md:flex">
                 <Link
                     class="glow border border-white px-4"
                     :href="route('project.show', { project: project.slug })"
