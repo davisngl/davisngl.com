@@ -1,20 +1,20 @@
 <template>
     <div>
-        <h1 class="text-3xl font-bold">Hello there</h1>
-        <section class="my-10">
-            <p>
-                I am Davis. Been doing web development professionally for over 4
+        <h1 class="text-xl md:text-3xl font-bold">Hello there</h1>
+        <section class="my-5 md:my-10 text-md">
+            <p class="text-justify xs:text-left">
+                I'm Davis. Been doing web development professionally for over 4
                 years. What started out as tinkering around HTML and CSS in Adobe Dreamweaver days, ended
                 up as a passion for PHP. To be precise, <b>Laravel</b>.
             </p>
-            <p>
+            <p class="text-justify xs:text-left">
                 Now, with a great people around me, I am putting in my effort to popularize e-sports in Latvia.
             </p>
         </section>
 
         <section>
-            <h2 class="text-xl font-bold">Technology stack I use</h2>
-            <ul class="w-full mt-5 flex space-x-5 leading-normal text-sm">
+            <h2 class="text-lg md:text-xl font-bold">Technology stack I use</h2>
+            <ul class="w-full mt-5 md:flex grid grid-cols-2 sm:grid-cols-3 gap-3 md:space-x-2 leading-normal text-sm">
                 <li
                     class="block cursor-pointer rounded-lg border border-gray-100 px-3 py-1.5 transition hover:border-red-500 hover:text-gray-100"
                 >
@@ -49,3 +49,5 @@
         </section>
     </div>
 </template>
+<script setup>
+</script>

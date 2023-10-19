@@ -16,7 +16,7 @@ class ProjectResource extends JsonResource
             'id'           => $this->id,
             'name'         => $this->name,
             'slug'         => $this->slug,
-            'description'  => Str::words($this->description, 40),
+            'description'  => Str::words($this->description, 35),
             'technologies' => $this->technologies,
             'urls'         => collect($this->urls)->flatMap(fn($url) => [$url['key'] => $url['value']]),
             'images'       => [

@@ -3,11 +3,10 @@ import Navigation from '@/Components/Navigation.vue'
 </script>
 
 <template>
-    <main class="mx-auto max-w-4xl">
+    <main class="w-full mx-auto px-5 md:px-5 md:max-w-4xl leading-relaxed md:leading-9">
         <Navigation class="mt-10" />
 
         <section
-            class="mx-auto max-w-4xl leading-9"
             :class="[ $page.component === 'Project' ? 'mt-7' : 'mt-20' ]"
         >
             <slot />
