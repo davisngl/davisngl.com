@@ -1,35 +1,110 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue'
+import { ref } from 'vue'
+
+const props = defineProps({
+    isMobileNavigationOpen: {
+        type: Boolean,
+        default: false,
+    },
+})
+
+const mobileNavigation = ref(null)
+
+const toggleMobileNavigation = () => {
+    mobileNavigation.value.classList.toggle('-translate-x-full')
+}
 </script>
 
 <template>
-    <nav class="flex justify-between">
-        <ul class="flex">
-            <li>
-                <NavLink
-                    :href="route('about.index')"
-                    :active="$page.component === 'About'"
-                    >Home</NavLink
+    <div>
+        <nav class="flex justify-end">
+            <button
+                class="block focus:bg-gray-700 focus:outline-none md:hidden"
+                @click="toggleMobileNavigation"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-10 w-10"
                 >
-            </li>
-        </ul>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    />
+                </svg>
+            </button>
 
-        <ul class="flex w-1/2 space-x-10 justify-end">
-            <li>
-                <NavLink
-                    :href="route('project.index')"
-                    :active="$page.component === 'Projects'"
-                    >Projects</NavLink
-                >
-            </li>
+            <nav class="hidden md:flex md:flex-1 md:justify-between">
+                <div class="flex">
+                    <NavLink
+                        :href="route('about.index')"
+                        :active="$page.component === 'About'"
+                        >Home
+                    </NavLink>
+                </div>
 
-            <li>
-                <NavLink
-                    :href="route('contact.index')"
-                    :active="$page.component === 'Contact'"
-                    >Contact</NavLink
+                <div class="flex w-1/2 justify-end space-x-10">
+                    <NavLink
+                        :href="route('project.index')"
+                        :active="$page.component === 'Projects'"
+                        >Projects
+                    </NavLink>
+
+                    <NavLink
+                        :href="route('contact.index')"
+                        :active="$page.component === 'Contact'"
+                        >Contact
+                    </NavLink>
+                </div>
+            </nav>
+        </nav>
+
+        <nav
+            ref="mobileNavigation"
+            class="absolute inset-y-0 text-xl left-0 flex min-h-full space-y-2 w-64 -translate-x-full transform flex-col bg-gray-800 bg-opacity-95 pt-10 duration-200"
+        >
+            <div class="mx-7 flex justify-end focus:outline-none" @click="toggleMobileNavigation">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-10 w-10"
                 >
-            </li>
-        </ul>
-    </nav>
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+            </div>
+
+            <NavLink
+                class="block px-10 py-2.5"
+                :href="route('about.index')"
+                :active="$page.component === 'About'"
+                >Home
+            </NavLink>
+
+            <NavLink
+                class="block px-10 py-2.5"
+                :href="route('project.index')"
+                :active="$page.component === 'Projects'"
+                >Projects
+            </NavLink>
+
+            <NavLink
+                class="block px-10 py-2.5"
+                :href="route('contact.index')"
+                :active="$page.component === 'Contact'"
+                >Contact
+            </NavLink>
+        </nav>
+    </div>
 </template>
