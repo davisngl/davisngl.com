@@ -2,10 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
-/** @mixin \App\Models\Project */
+/** @mixin Project */
 class ProjectResource extends JsonResource
 {
     public function toArray(Request $request): array
@@ -14,7 +16,7 @@ class ProjectResource extends JsonResource
             'id'           => $this->id,
             'name'         => $this->name,
             'slug'         => $this->slug,
-            'description'  => $this->description,
+            'description'  => Str::words($this->description, 40),
             'technologies' => $this->technologies,
             'urls'         => collect($this->urls)->flatMap(fn($url) => [$url['key'] => $url['value']]),
             'images'       => [
