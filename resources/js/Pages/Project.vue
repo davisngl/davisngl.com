@@ -19,7 +19,7 @@ const project = props.project.data
         </Link>
     </div>
 
-    <section class="mt-10">
+    <section class="my-10">
         <div class="mb-5 flex flex-col items-center">
             <h1 class="mb-1 text-2xl font-semibold md:text-3xl">
                 {{ project.name }}
