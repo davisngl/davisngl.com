@@ -1,6 +1,7 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3'
 import Notification from '@/Components/Notification.vue'
+import { words } from '@/Support/util.js'
 
 const props = defineProps({
     projects: {
@@ -34,25 +35,25 @@ const projects = props.projects.data
                         />
                     </aside>
 
-                    <aside class="w-full md:w-1/2 mt-3 md:mt-0">
+                    <aside class="mt-3 w-full md:mt-0 md:w-1/2">
                         <h2 class="text-center text-xl font-semibold">
                             {{ project.name }}
                         </h2>
 
                         <p
                             class="prose text-white"
-                            v-html="project.description"
+                            v-html="words(project.description, 30)"
                         ></p>
                     </aside>
                 </div>
             </Link>
 
-            <div class="mt-5 hidden md:items-center space-x-2 md:flex">
+            <div class="mt-5 hidden space-x-2 md:flex md:items-center">
                 <Link
                     class="glow border border-white px-4"
                     :href="route('project.show', { project: project.slug })"
-                    >Open</Link
-                >
+                    >Open
+                </Link>
 
                 <a
                     class="glow flex items-center justify-between space-x-3 border border-white px-4"

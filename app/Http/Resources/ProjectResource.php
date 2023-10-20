@@ -5,7 +5,6 @@ namespace App\Http\Resources;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Str;
 
 /** @mixin Project */
 class ProjectResource extends JsonResource
@@ -16,7 +15,7 @@ class ProjectResource extends JsonResource
             'id'           => $this->id,
             'name'         => $this->name,
             'slug'         => $this->slug,
-            'description'  => Str::words($this->description, 35),
+            'description'  => $this->description,
             'technologies' => $this->technologies,
             'urls'         => collect($this->urls)->flatMap(fn($url) => [$url['key'] => $url['value']]),
             'images'       => [
