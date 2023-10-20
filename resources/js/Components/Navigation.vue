@@ -1,11 +1,16 @@
 <script setup>
 import NavLink from '@/Components/NavLink.vue'
 import { ref } from 'vue'
+import { vOnClickOutside } from '@vueuse/components'
 
 const mobileNavigation = ref(null)
 
-const toggleMobileNavigation = () => {
-    mobileNavigation.value.classList.toggle('-translate-x-full')
+const openMobileNavigation = () => {
+    mobileNavigation.value.classList.remove('-translate-x-full')
+}
+
+const closeMobileNavigation = () => {
+    mobileNavigation.value.classList.add('-translate-x-full')
 }
 </script>
 
@@ -13,8 +18,8 @@ const toggleMobileNavigation = () => {
     <div>
         <nav class="flex justify-end">
             <button
-                class="block focus:bg-gray-700 focus:outline-none md:hidden"
-                @click="toggleMobileNavigation"
+                class="block focus:outline-none md:hidden"
+                @click="openMobileNavigation"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -59,11 +64,12 @@ const toggleMobileNavigation = () => {
 
         <nav
             ref="mobileNavigation"
+            v-on-click-outside="closeMobileNavigation"
             class="fixed inset-y-0 left-0 flex h-screen w-64 -translate-x-full transform flex-col space-y-2 bg-gray-800 bg-opacity-95 pt-10 text-xl duration-200 z-10"
         >
             <div
                 class="mx-7 flex justify-end focus:outline-none"
-                @click="toggleMobileNavigation"
+                @click="closeMobileNavigation"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
