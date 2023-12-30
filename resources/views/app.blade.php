@@ -13,6 +13,7 @@
     @routes
     @vite(['resources/js/app.js'])
     @inertiaHead
+    <script defer data-domain="davisngl.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
     @inertia
