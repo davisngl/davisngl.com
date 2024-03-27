@@ -2,11 +2,13 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\ProjectMetaKey;
 use App\Filament\Resources\ProjectResource\Pages;
 use App\Models\Project;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\TextInput;
@@ -54,6 +56,7 @@ class ProjectResource extends Resource
                     ->schema([
                         SpatieMediaLibraryFileUpload::make('images')
                             ->columnSpanFull()
+                            ->imageEditor()
                             ->collection('images')
                             ->visibility('public')
                             ->multiple()
@@ -74,7 +77,7 @@ class ProjectResource extends Resource
                             ->label('URLs')
                             ->helperText('URLs for the project (repository link, demo/live link) etc.')
                             ->schema([
-                                TextInput::make('key')->required(),
+                                Select::make('key')->required()->options(ProjectMetaKey::cases()),
                                 TextInput::make('value')->required(),
                             ])
                     ])

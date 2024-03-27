@@ -11,7 +11,12 @@ class ProjectController extends Controller
     public function index(): Response
     {
         return inertia('Projects', [
-            'projects' => ProjectResource::collection(Project::all()),
+            'projects' => ProjectResource::collection(
+                Project::query()
+                    ->orderBy('order')
+                    ->orderBy('created_at')
+                    ->get()
+            ),
         ]);
     }
 
